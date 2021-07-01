@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def unarchive
-    # Unarchive the user
+    # Usnarchive the user
     render json: { error: @user.errors.full_messages.join(', ')}, status: :bad_request unless @user.unarchive!
 
     # Send him email about this changes
