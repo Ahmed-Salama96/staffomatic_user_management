@@ -9,4 +9,12 @@ class User < ApplicationRecord
   validates :email,
     presence: true,
     uniqueness: true
+
+  def archive!
+    self.update(is_archived: true)
+  end
+
+  def unarchive!
+    self.update(is_archived: false)
+  end
 end
