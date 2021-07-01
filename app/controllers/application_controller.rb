@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::API
   before_action :authorize!
+  # used by paper-tail to know who made what
+  before_action :set_paper_trail_whodunnit
 
   private
 

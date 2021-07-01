@@ -100,6 +100,9 @@ GEM
     nokogiri (1.11.7)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    paper_trail (12.0.0)
+      activerecord (>= 5.2)
+      request_store (~> 1.1)
     paranoia (2.4.3)
       activerecord (>= 4.0, < 6.2)
     public_activity (1.6.4)
@@ -147,6 +150,8 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    request_store (1.5.0)
+      rack (>= 1.4)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -191,6 +196,7 @@ DEPENDENCIES
   jwt
   listen (~> 3.3)
   mysql2 (~> 0.5)
+  paper_trail
   paranoia (~> 2.2)
   public_activity
   puma (~> 5.0)

@@ -169,3 +169,43 @@ Migrating to AddDeletedAtToUsers (20210701133241)
   [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
   [1m[35m (0.6ms)[0m  [1m[34mSELECT RELEASE_LOCK('6260549717220968400')[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/" for 172.18.0.1 at 2021-07-01 13:40:28 +0000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-6.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-6.1.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 6.0ms | Allocations: 190)
+Completed 200 OK in 15ms (Views: 6.9ms | ActiveRecord: 0.0ms | Allocations: 2283)
+
+
+Started GET "/favicon.ico" for 172.18.0.1 at 2021-07-01 13:40:29 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('6260549717220968400', 0)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateActivities (20210701134633)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@innodb_file_per_table = 1 AND @@innodb_file_format = 'Barracuda'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE `activities` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `trackable_type` varchar(255), `trackable_id` bigint, `owner_type` varchar(255), `owner_id` bigint, `key` varchar(255), `parameters` text, `recipient_type` varchar(255), `recipient_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, INDEX `index_activities_on_trackable` (`trackable_type`, `trackable_id`), INDEX `index_activities_on_owner` (`owner_type`, `owner_id`), INDEX `index_activities_on_recipient` (`recipient_type`, `recipient_id`))[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('6260549717220968400')[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('6260549717220968400', 0)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateActivities (20210701134633)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@innodb_file_per_table = 1 AND @@innodb_file_format = 'Barracuda'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE `activities` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `trackable_type` varchar(255), `trackable_id` bigint, `owner_type` varchar(255), `owner_id` bigint, `key` varchar(255), `parameters` text, `recipient_type` varchar(255), `recipient_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, INDEX `index_activities_on_trackable` (`trackable_type`, `trackable_id`), INDEX `index_activities_on_owner` (`owner_type`, `owner_id`), INDEX `index_activities_on_recipient` (`recipient_type`, `recipient_id`))[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('6260549717220968400')[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('6260549717220968400', 0)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateVersions (20210701143757)
+  [1m[35m (56.4ms)[0m  [1m[35mCREATE TABLE `versions` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `item_type` varchar(191) NOT NULL, `item_id` bigint NOT NULL, `event` varchar(255) NOT NULL, `whodunnit` varchar(255), `object` longtext, `created_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci[0m
+  [1m[35m (48.7ms)[0m  [1m[35mCREATE INDEX `index_versions_on_item_type_and_item_id` ON `versions` (`item_type`, `item_id`)[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20210701143757')[0m
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK('6260549717220968400')[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('6260549717220968400', 0)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('6260549717220968400')[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m

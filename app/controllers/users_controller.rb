@@ -8,13 +8,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user_id = @user.id
-    user_email = @user.email
-
     # Remove the user
     render json: { error: @user.errors.full_messages.join(', ')}, status: :bad_request unless @user.destroy
 
-    # log changes
     # Send him email about this changes
   end
 
