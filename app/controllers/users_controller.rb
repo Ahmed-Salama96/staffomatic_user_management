@@ -7,37 +7,48 @@ class UsersController < ApplicationController
   before_action :validate_already_unarchived, only: %i[unarchive]
 
   def index
-    render jsonapi: User.all
+    @users = case params[:status]
+             when 'deleted'
+               User.only_deleted
+             when 'archived'
+               User.archived
+             when 'unarchived'
+               User.unarchived
+             else
+               User.all
+             end
+
+    render jsonapi: @users
   end
 
   def destroy
     # Remove the user
-    render json: { error: @user.errors.full_messages.join(', ')}, status: :bad_request unless @user.destroy
+    render json: { error: @user.errors.full_messages.join(', ') }, status: :bad_request unless @user.destroy
 
     # Send him email about this changes
     UserMailer.notify_user_deleted(@user).deliver_now
 
-    render json: {message: 'user deleted successfully'}, status: :ok
+    render json: { message: 'user deleted successfully' }, status: :ok
   end
 
   def archive
     # Archive the user
-    render json: { error: @user.errors.full_messages.join(', ')}, status: :bad_request unless @user.archive!
+    render json: { error: @user.errors.full_messages.join(', ') }, status: :bad_request unless @user.archive!
 
     # Send him email about this changes
     UserMailer.notify_user_archived(@user).deliver_now
 
-    render json: {message: 'user archived successfully'}, status: :ok
+    render json: { message: 'user archived successfully' }, status: :ok
   end
 
   def unarchive
     # Usnarchive the user
-    render json: { error: @user.errors.full_messages.join(', ')}, status: :bad_request unless @user.unarchive!
+    render json: { error: @user.errors.full_messages.join(', ') }, status: :bad_request unless @user.unarchive!
 
     # Send him email about this changes
     UserMailer.notify_user_unarchived(@user).deliver_now
 
-    render json: {message: 'user unarchived successfully'}, status: :ok
+    render json: { message: 'user unarchived successfully' }, status: :ok
   end
 
   private

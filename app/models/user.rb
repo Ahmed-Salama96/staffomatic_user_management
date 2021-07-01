@@ -6,6 +6,9 @@ class User < ApplicationRecord
   # log activities on users
   has_paper_trail
 
+  scope :archived, -> { where(is_archived: true)}
+  scope :unarchived, -> { where(is_archived: false) }
+
   validates :email,
     presence: true,
     uniqueness: true
