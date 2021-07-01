@@ -12,6 +12,17 @@ class UsersController < ApplicationController
     render json: { error: @user.errors.full_messages.join(', ')}, status: :bad_request unless @user.destroy
 
     # Send him email about this changes
+    UserMailer.notify_user_deleted(@user).deliver_now
+
+    render json: {message: 'user deleted successfully'}, status: :ok
+  end
+
+  def archive
+
+  end
+
+  def unarchive
+
   end
 
   private
