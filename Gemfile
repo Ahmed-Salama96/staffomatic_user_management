@@ -22,6 +22,8 @@ gem 'jwt'
 # seriaization & json_api logic
 gem 'jsonapi.rb'
 
+gem 'paranoia', '~> 2.2'
+gem 'public_activity'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
