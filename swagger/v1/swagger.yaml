@@ -4,15 +4,20 @@ info:
   title: API V1
   version: v1
 paths:
-  users:
+  "/users":
     get:
       summary: list users
       tags:
       - Users
       parameters:
-      - name: Authentication
+      - name: Authorization
         in: header
         default: Bearer token
+        schema:
+          type: string
+      - name: status
+        in: path
+        required: true
         schema:
           type: string
       responses:
@@ -28,65 +33,20 @@ paths:
                     properties:
                       id:
                         type: integer
-                      username:
-                        type: string
                       email:
                         type: string
                         format: email
-                      first_name:
+                      created_at:
                         type: string
-                      last_name:
+                        format: date_time
+                      updated_at:
                         type: string
-                      gender:
-                        type: integer
-                      birthdate:
+                        format: date_time
+                      deleted_at:
                         type: string
-                        format: date
-                      job_title:
-                        type: string
-                      phone_number:
-                        type: string
-                        format: number
-                      shipping_address:
-                        type: string
-                      billing_address:
-                        type: string
-                      shipping_postcode:
-                        type: string
-                      billing_postcode:
-                        type: string
-                      billing_country_id:
-                        type: integer
-                      billing_state_id:
-                        type: integer
-                      billing_city_id:
-                        type: integer
-                      shipping_country_id:
-                        type: integer
-                      shipping_state_id:
-                        type: integer
-                      shipping_city_id:
-                        type: integer
-                      business_name:
-                        type: string
-                      legal_form:
-                        type: integer
-                      business_reg_num:
-                        type: string
-                      tax_id_num:
-                        type: string
-                      billing_country:
-                        type: integer
-                      billing_state:
-                        type: integer
-                      billing_city:
-                        type: integer
-                      shipping_country:
-                        type: integer
-                      shipping_state:
-                        type: integer
-                      shipping_city:
-                        type: integer
+                        format: date_time
+                      is_archived:
+                        type: boolean
         '401':
           description: Un-Authorized
     delete:
@@ -94,7 +54,7 @@ paths:
       tags:
       - Users
       parameters:
-      - name: Authentication
+      - name: Authorization
         in: header
         default: Bearer token
         schema:
@@ -121,7 +81,7 @@ paths:
       tags:
       - Users
       parameters:
-      - name: Authentication
+      - name: Authorization
         in: header
         default: Bearer token
         schema:
@@ -148,7 +108,7 @@ paths:
       tags:
       - Users
       parameters:
-      - name: Authentication
+      - name: Authorization
         in: header
         default: Bearer token
         schema:
@@ -170,7 +130,8 @@ paths:
         '200':
           description: user unarchived successfully
 servers:
-- url: https://{defaultHost}
+- url: http://localhost:3000
+- url: http://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: localhost:3000
