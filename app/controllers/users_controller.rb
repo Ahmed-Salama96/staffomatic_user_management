@@ -7,16 +7,7 @@ class UsersController < ApplicationController
   before_action :validate_already_unarchived, only: %i[unarchive]
 
   def index
-    @target_users = case params[:status]
-             when 'deleted'
-               User.only_deleted
-             when 'archived'
-               User.archived
-             when 'unarchived'
-               User.unarchived
-             else
-               User.all
-             end
+    @target_users = get_users(params[:status])
 
     render jsonapi: @target_users
   end
@@ -55,6 +46,19 @@ class UsersController < ApplicationController
 
   def set_user
     @target_user = User.find_by(id: params[:id])
+  end
+
+  def get_users(status)
+    case status
+    when 'deleted'
+      User.only_deleted
+    when 'archived'
+      User.archived
+    when 'unarchived'
+      User.unarchived
+    else
+      User.all
+    end
   end
 
   def validate_user
