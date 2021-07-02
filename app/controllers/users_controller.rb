@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def destroy
     # Remove the user
-    render json: { error: @target_user.errors.full_messages.join(', ') }, status: :bad_request unless @target_user.destroy
+    render json: { error: @target_user.errors.full_messages.join(', ') }, status: :unprocessable_entity unless @target_user.destroy
 
     # Send him email about this changes
     UserMailer.notify_user_deleted(@target_user).deliver_now
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def archive
     # Archive the user
-    render json: { error: @target_user.errors.full_messages.join(', ') }, status: :bad_request unless @target_user.archive!
+    render json: { error: @target_user.errors.full_messages.join(', ') }, status: :unprocessable_entity unless @target_user.archive!
 
     # Send him email about this changes
     UserMailer.notify_user_archived(@target_user).deliver_now
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def unarchive
     # Usnarchive the user
-    render json: { error: @target_user.errors.full_messages.join(', ') }, status: :bad_request unless @target_user.unarchive!
+    render json: { error: @target_user.errors.full_messages.join(', ') }, status: :unprocessable_entity unless @target_user.unarchive!
 
     # Send him email about this changes
     UserMailer.notify_user_unarchived(@target_user).deliver_now
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   def validate_user
     return render json: { error: 'record not found' }, status: :not_found unless @target_user.present?
     render json: { error: 'you cannot delete, archive, or un-archive yourself' },
-           status: :not_found if @target_user.id == current_user.id
+           status: :bad_request if @target_user.id == current_user.id
   end
 
   def validate_already_archived

@@ -1260,3 +1260,165 @@ Processing by UsersController#index as */*
 Completed 200 OK in 11ms (Views: 4.8ms | ActiveRecord: 1.6ms | Allocations: 3597)
 
 
+Started DELETE "/users/4" for 172.19.0.1 at 2021-07-02 11:42:26 +0000
+Processing by UsersController#destroy as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 4 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:48:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:17:in `destroy'
+  [1m[36mPaperTrail::Version Create (0.4ms)[0m  [1m[32mINSERT INTO `versions` (`item_type`, `item_id`, `event`, `whodunnit`, `object`, `created_at`) VALUES ('User', 4, 'destroy', '1', '---\nid: 4\nemail: customer_3@easypep.de\npassword_digest: \"$2a$12$5i4HvnQ8aIytP.G5LisBeOBjw0cz3EUJqVuUfyAWOl0EQKa814S.2\"\ncreated_at: !ruby/object:ActiveSupport::TimeWithZone\n  utc: 2021-07-01 23:20:51.504018000 Z\n  zone: &1 !ruby/object:ActiveSupport::TimeZone\n    name: Etc/UTC\n  time: 2021-07-01 23:20:51.504018000 Z\nupdated_at: !ruby/object:ActiveSupport::TimeWithZone\n  utc: 2021-07-01 23:20:51.504018000 Z\n  zone: *1\n  time: 2021-07-01 23:20:51.504018000 Z\nis_archived: false\ndeleted_at:\n', '2021-07-02 11:42:27')[0m
+  ↳ app/controllers/users_controller.rb:17:in `destroy'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE `users` SET `users`.`deleted_at` = '2021-07-02 11:42:27', `users`.`updated_at` = '2021-07-02 11:42:27.055413' WHERE `users`.`id` = 4[0m
+  ↳ app/controllers/users_controller.rb:17:in `destroy'
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:17:in `destroy'
+  Rendering layout layouts/mailer.html.erb
+  Rendering user_mailer/notify_user_deleted.html.erb within layouts/mailer
+  Rendered user_mailer/notify_user_deleted.html.erb within layouts/mailer (Duration: 0.0ms | Allocations: 5)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.2ms | Allocations: 95)
+UserMailer#notify_user_deleted: processed outbound mail in 1.5ms
+Delivered mail 60defba3fb9f_13fb27092f7b81566f@47e846264972.mail (1.3ms)
+Date: Fri, 02 Jul 2021 11:42:27 +0000
+From: from@example.com
+To: customer_3@easypep.de
+Message-ID: <60defba3fb9f_13fb27092f7b81566f@47e846264972.mail>
+Subject: You have been deleted!
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Hello customer_3@easypep.de, You have been deleted from the website!</h1>
+
+  </body>
+</html>
+
+Completed 200 OK in 45ms (Views: 0.2ms | ActiveRecord: 6.3ms | Allocations: 13935)
+
+
+Started DELETE "/users/4" for 172.19.0.1 at 2021-07-02 11:42:30 +0000
+Processing by UsersController#destroy as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 4 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:48:in `set_user'
+Filter chain halted as :validate_user rendered or redirected
+Completed 404 Not Found in 6ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 2136)
+
+
+Started DELETE "/users/4" for 172.19.0.1 at 2021-07-02 11:42:38 +0000
+Processing by UsersController#destroy as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 4 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:48:in `set_user'
+Filter chain halted as :validate_user rendered or redirected
+Completed 404 Not Found in 7ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 2136)
+
+
+Started GET "/users?status=unarchived" for 172.19.0.1 at 2021-07-02 11:42:46 +0000
+Processing by UsersController#index as */*
+  Parameters: {"status"=>"unarchived"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`is_archived` = FALSE LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:12:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`is_archived` = FALSE ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:12:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`is_archived` = FALSE[0m
+  ↳ app/controllers/users_controller.rb:12:in `index'
+Completed 200 OK in 8ms (Views: 3.7ms | ActiveRecord: 1.4ms | Allocations: 3722)
+
+
+Started GET "/users?status=deleted" for 172.19.0.1 at 2021-07-02 11:42:59 +0000
+Processing by UsersController#index as */*
+  Parameters: {"status"=>"deleted"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`deleted_at` IS NOT NULL LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:12:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NOT NULL ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:12:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NOT NULL[0m
+  ↳ app/controllers/users_controller.rb:12:in `index'
+Completed 200 OK in 9ms (Views: 4.0ms | ActiveRecord: 1.5ms | Allocations: 3467)
+
+
+Started GET "/api-docs" for 172.19.0.1 at 2021-07-02 12:12:34 +0000
+  
+NameError (uninitialized constant Rswag):
+  
+config/routes.rb:2:in `block in <main>'
+config/routes.rb:1:in `<main>'
+Started GET "/api-docs" for 172.20.0.1 at 2021-07-02 12:19:28 +0000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/api-docs/index.html" for 172.20.0.1 at 2021-07-02 12:19:28 +0000
+Started GET "/api-docs/swagger-ui.css" for 172.20.0.1 at 2021-07-02 12:19:28 +0000
+Started GET "/api-docs/swagger-ui-bundle.js" for 172.20.0.1 at 2021-07-02 12:19:28 +0000
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 172.20.0.1 at 2021-07-02 12:19:28 +0000
+Started GET "/api-docs/v1/swagger.yaml" for 172.20.0.1 at 2021-07-02 12:19:28 +0000
+Started GET "/api-docs/favicon-32x32.png" for 172.20.0.1 at 2021-07-02 12:19:28 +0000
+Started GET "/api-docs/index.html" for 172.20.0.1 at 2021-07-02 12:37:15 +0000
+Started GET "/api-docs/swagger-ui.css" for 172.20.0.1 at 2021-07-02 12:37:15 +0000
+Started GET "/api-docs/swagger-ui-bundle.js" for 172.20.0.1 at 2021-07-02 12:37:15 +0000
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 172.20.0.1 at 2021-07-02 12:37:15 +0000
+Started GET "/api-docs/v1/swagger.yaml" for 172.20.0.1 at 2021-07-02 12:37:15 +0000
+Started GET "/api-docs/favicon-32x32.png" for 172.20.0.1 at 2021-07-02 12:37:15 +0000
+Started GET "/api-docs/index.html" for 172.20.0.1 at 2021-07-02 12:37:27 +0000
+Started GET "/api-docs/swagger-ui.css" for 172.20.0.1 at 2021-07-02 12:37:27 +0000
+Started GET "/api-docs/swagger-ui-bundle.js" for 172.20.0.1 at 2021-07-02 12:37:27 +0000
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 172.20.0.1 at 2021-07-02 12:37:27 +0000
+Started GET "/api-docs/v1/swagger.yaml" for 172.20.0.1 at 2021-07-02 12:37:27 +0000
+Started GET "/api-docs/favicon-32x32.png" for 172.20.0.1 at 2021-07-02 12:37:27 +0000
+Started GET "/api-docs/index.html" for 172.20.0.1 at 2021-07-02 12:37:58 +0000
+Started GET "/api-docs/swagger-ui.css" for 172.20.0.1 at 2021-07-02 12:37:58 +0000
+Started GET "/api-docs/swagger-ui-bundle.js" for 172.20.0.1 at 2021-07-02 12:37:58 +0000
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 172.20.0.1 at 2021-07-02 12:37:58 +0000
+Started GET "/api-docs/v1/swagger.yaml" for 172.20.0.1 at 2021-07-02 12:37:58 +0000
+Started GET "/api-docs/favicon-32x32.png" for 172.20.0.1 at 2021-07-02 12:37:59 +0000
+Started GET "/api-docs/index.html" for 172.20.0.1 at 2021-07-02 12:38:31 +0000
+Started GET "/api-docs/swagger-ui.css" for 172.20.0.1 at 2021-07-02 12:38:31 +0000
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 172.20.0.1 at 2021-07-02 12:38:31 +0000
+Started GET "/api-docs/swagger-ui-bundle.js" for 172.20.0.1 at 2021-07-02 12:38:31 +0000
+Started GET "/api-docs/v1/swagger.yaml" for 172.20.0.1 at 2021-07-02 12:38:31 +0000
+Started GET "/api-docs/favicon-32x32.png" for 172.20.0.1 at 2021-07-02 12:38:31 +0000
+Started GET "/api-docs/index.html" for 172.21.0.1 at 2021-07-02 12:51:54 +0000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/api-docs/swagger-ui.css" for 172.21.0.1 at 2021-07-02 12:51:54 +0000
+Started GET "/api-docs/swagger-ui-bundle.js" for 172.21.0.1 at 2021-07-02 12:51:54 +0000
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 172.21.0.1 at 2021-07-02 12:51:54 +0000
+Started GET "/api-docs/v1/swagger.yaml" for 172.21.0.1 at 2021-07-02 12:51:54 +0000
+Started GET "/api-docs/favicon-32x32.png" for 172.21.0.1 at 2021-07-02 12:51:54 +0000
+Started GET "/api-docs/index.html" for 172.21.0.1 at 2021-07-02 12:52:15 +0000
+Started GET "/api-docs/swagger-ui.css" for 172.21.0.1 at 2021-07-02 12:52:15 +0000
+Started GET "/api-docs/swagger-ui-bundle.js" for 172.21.0.1 at 2021-07-02 12:52:15 +0000
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 172.21.0.1 at 2021-07-02 12:52:15 +0000
+Started GET "/api-docs/v1/swagger.yaml" for 172.21.0.1 at 2021-07-02 12:52:15 +0000
+Started GET "/api-docs/favicon-32x32.png" for 172.21.0.1 at 2021-07-02 12:52:15 +0000

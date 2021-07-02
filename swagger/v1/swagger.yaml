@@ -1,0 +1,176 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  users:
+    get:
+      summary: list users
+      tags:
+      - Users
+      parameters:
+      - name: Authentication
+        in: header
+        default: Bearer token
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      username:
+                        type: string
+                      email:
+                        type: string
+                        format: email
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      gender:
+                        type: integer
+                      birthdate:
+                        type: string
+                        format: date
+                      job_title:
+                        type: string
+                      phone_number:
+                        type: string
+                        format: number
+                      shipping_address:
+                        type: string
+                      billing_address:
+                        type: string
+                      shipping_postcode:
+                        type: string
+                      billing_postcode:
+                        type: string
+                      billing_country_id:
+                        type: integer
+                      billing_state_id:
+                        type: integer
+                      billing_city_id:
+                        type: integer
+                      shipping_country_id:
+                        type: integer
+                      shipping_state_id:
+                        type: integer
+                      shipping_city_id:
+                        type: integer
+                      business_name:
+                        type: string
+                      legal_form:
+                        type: integer
+                      business_reg_num:
+                        type: string
+                      tax_id_num:
+                        type: string
+                      billing_country:
+                        type: integer
+                      billing_state:
+                        type: integer
+                      billing_city:
+                        type: integer
+                      shipping_country:
+                        type: integer
+                      shipping_state:
+                        type: integer
+                      shipping_city:
+                        type: integer
+        '401':
+          description: Un-Authorized
+    delete:
+      summary: delete a user
+      tags:
+      - Users
+      parameters:
+      - name: Authentication
+        in: header
+        default: Bearer token
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '401':
+          description: Un-Authorized
+        '404':
+          description: Record not found
+        '400':
+          description: you cannot delete yourself
+        '422':
+          description: Error happened during deleting the user
+        '200':
+          description: user deleted successfully
+  users/archive/{id}:
+    post:
+      summary: Archive a user
+      tags:
+      - Users
+      parameters:
+      - name: Authentication
+        in: header
+        default: Bearer token
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '401':
+          description: Un-Authorized
+        '404':
+          description: Record not found
+        '400':
+          description: user already archived or trying to archive himself
+        '422':
+          description: Error happened during archiving the user
+        '200':
+          description: user archived successfully
+  users/unarchive/{id}:
+    post:
+      summary: Unarchive a user
+      tags:
+      - Users
+      parameters:
+      - name: Authentication
+        in: header
+        default: Bearer token
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '401':
+          description: Un-Authorized
+        '404':
+          description: Record not found
+        '400':
+          description: user already unarchived or trying to unarchive himself
+        '422':
+          description: Error happened during unarchiving the user
+        '200':
+          description: user unarchived successfully
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
