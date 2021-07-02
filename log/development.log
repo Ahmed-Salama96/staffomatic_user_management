@@ -730,3 +730,346 @@ Filter chain halted as :authorize! rendered or redirected
 Completed 401 Unauthorized in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 2129)
 
 
+Started POST "/authentications" for 172.19.0.1 at 2021-07-01 23:46:50 +0000
+Processing by AuthenticationsController#create as */*
+  Parameters: {"authentication"=>{"email"=>"admin@easypep.de", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`email` = 'admin@easypep.de' LIMIT 1[0m
+  ↳ app/controllers/authentications_controller.rb:5:in `create'
+Completed 422 Unprocessable Entity in 5ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 2079)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NOT NULL ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NOT NULL ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'admin@easypep.de' AND `users`.`deleted_at` IS NULL AND `users`.`id` != 1 LIMIT 1[0m
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2021-07-01 23:48:08.734291', `users`.`deleted_at` = NULL WHERE `users`.`id` = 1[0m
+  [1m[36mPaperTrail::Version Create (0.4ms)[0m  [1m[32mINSERT INTO `versions` (`item_type`, `item_id`, `event`, `object`, `created_at`) VALUES ('User', 1, 'update', '---\ndeleted_at: !ruby/object:ActiveSupport::TimeWithZone\n  utc: 2021-07-01 23:32:17.000000000 Z\n  zone: &1 !ruby/object:ActiveSupport::TimeZone\n    name: Etc/UTC\n  time: 2021-07-01 23:32:17.000000000 Z\nid: 1\nemail: admin@easypep.de\npassword_digest: \"$2a$12$3YsPLQCji9gP4NiizB.6PeEz4WKCQl1GjEF2qqRCVfOYHHpTT.fRu\"\ncreated_at: !ruby/object:ActiveSupport::TimeWithZone\n  utc: 2021-07-01 23:19:43.171456000 Z\n  zone: *1\n  time: 2021-07-01 23:19:43.171456000 Z\nupdated_at: !ruby/object:ActiveSupport::TimeWithZone\n  utc: 2021-07-01 23:32:17.116337000 Z\n  zone: *1\n  time: 2021-07-01 23:32:17.116337000 Z\nis_archived: false\n', '2021-07-01 23:48:08')[0m
+  [1m[36mTRANSACTION (17.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`deleted_at` IS NULL[0m
+Started POST "/users/2/archive" for 172.19.0.1 at 2021-07-01 23:50:17 +0000
+Processing by UsersController#archive as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+Filter chain halted as :authorize! rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1816)
+
+
+Started POST "/authentications" for 172.19.0.1 at 2021-07-01 23:50:21 +0000
+Processing by AuthenticationsController#create as */*
+  Parameters: {"authentication"=>{"email"=>"admin@easypep.de", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`email` = 'admin@easypep.de' LIMIT 1[0m
+  ↳ app/controllers/authentications_controller.rb:5:in `create'
+Completed 201 Created in 217ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 2081)
+
+
+Started POST "/users/2/archive" for 172.19.0.1 at 2021-07-01 23:51:06 +0000
+Processing by UsersController#archive as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+Filter chain halted as :authorize! rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1816)
+
+
+Started POST "/users/2/archive" for 172.19.0.1 at 2021-07-01 23:51:33 +0000
+Processing by UsersController#archive as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:57:in `set_user'
+Completed 500 Internal Server Error in 6ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 2583)
+
+
+  
+NoMethodError (undefined method `id' for nil:NilClass):
+  
+app/controllers/users_controller.rb:63:in `validate_user'
+Started POST "/users/2/archive" for 172.19.0.1 at 2021-07-01 23:52:58 +0000
+Processing by UsersController#archive as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:57:in `set_user'
+Filter chain halted as :validate_user rendered or redirected
+Completed 404 Not Found in 15ms (Views: 0.2ms | ActiveRecord: 1.8ms | Allocations: 9119)
+
+
+Started POST "/users/2/archive" for 172.19.0.1 at 2021-07-01 23:59:33 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/users/2/archive"):
+  
+Started POST "/users/archive/2" for 172.19.0.1 at 2021-07-01 23:59:40 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/users/archive/2"):
+  
+Started POST "/users/archive/2" for 172.19.0.1 at 2021-07-01 23:59:48 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/users/archive/2"):
+  
+Started POST "/users/archive/2" for 172.19.0.1 at 2021-07-02 00:00:27 +0000
+Processing by UsersController#archive as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:57:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:17:in `archive!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'admin@easypep.de' AND `users`.`deleted_at` IS NULL AND `users`.`id` != 1 LIMIT 1[0m
+  ↳ app/models/user.rb:17:in `archive!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2021-07-02 00:00:27.695399', `users`.`is_archived` = TRUE WHERE `users`.`id` = 1[0m
+  ↳ app/models/user.rb:17:in `archive!'
+  [1m[36mPaperTrail::Version Create (0.2ms)[0m  [1m[32mINSERT INTO `versions` (`item_type`, `item_id`, `event`, `whodunnit`, `object`, `created_at`) VALUES ('User', 1, 'update', '1', '---\nis_archived: false\nid: 1\nemail: admin@easypep.de\npassword_digest: \"$2a$12$3YsPLQCji9gP4NiizB.6PeEz4WKCQl1GjEF2qqRCVfOYHHpTT.fRu\"\ncreated_at: !ruby/object:ActiveSupport::TimeWithZone\n  utc: 2021-07-01 23:19:43.171456000 Z\n  zone: &1 !ruby/object:ActiveSupport::TimeZone\n    name: Etc/UTC\n  time: 2021-07-01 23:19:43.171456000 Z\nupdated_at: !ruby/object:ActiveSupport::TimeWithZone\n  utc: 2021-07-01 23:48:08.734291000 Z\n  zone: *1\n  time: 2021-07-01 23:48:08.734291000 Z\ndeleted_at:\n', '2021-07-02 00:00:27')[0m
+  ↳ app/models/user.rb:17:in `archive!'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:17:in `archive!'
+  Rendering layout layouts/mailer.html.erb
+  Rendering user_mailer/notify_user_archived.html.erb within layouts/mailer
+  Rendered user_mailer/notify_user_archived.html.erb within layouts/mailer (Duration: 0.3ms | Allocations: 101)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.5ms | Allocations: 189)
+UserMailer#notify_user_archived: processed outbound mail in 2.4ms
+Delivered mail 60de571baccd1_13fb27092f16415136@47e846264972.mail (1.3ms)
+Date: Fri, 02 Jul 2021 00:00:27 +0000
+From: from@example.com
+To: admin@easypep.de
+Message-ID: <60de571baccd1_13fb27092f16415136@47e846264972.mail>
+Subject: You have been archived
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Hello admin@easypep.de, You have been archived from the website!</h1>
+
+  </body>
+</html>
+
+Completed 200 OK in 33ms (Views: 0.2ms | ActiveRecord: 4.6ms | Allocations: 16021)
+
+
+Started GET "/users?status=archived" for 172.19.0.1 at 2021-07-02 00:00:41 +0000
+Processing by UsersController#index as */*
+  Parameters: {"status"=>"archived"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`is_archived` = TRUE LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:21:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`is_archived` = TRUE ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:21:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`is_archived` = TRUE[0m
+  ↳ app/controllers/users_controller.rb:21:in `index'
+Completed 200 OK in 11ms (Views: 5.2ms | ActiveRecord: 1.5ms | Allocations: 3624)
+
+
+Started POST "/users/archive/2" for 172.19.0.1 at 2021-07-02 00:03:54 +0000
+Processing by UsersController#archive as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:57:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:17:in `archive!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'customer@easypep.de' AND `users`.`deleted_at` IS NULL AND `users`.`id` != 2 LIMIT 1[0m
+  ↳ app/models/user.rb:17:in `archive!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2021-07-02 00:03:54.388040', `users`.`is_archived` = TRUE WHERE `users`.`id` = 2[0m
+  ↳ app/models/user.rb:17:in `archive!'
+  [1m[36mPaperTrail::Version Create (0.3ms)[0m  [1m[32mINSERT INTO `versions` (`item_type`, `item_id`, `event`, `whodunnit`, `object`, `created_at`) VALUES ('User', 2, 'update', '1', '---\nis_archived: false\nid: 2\nemail: customer@easypep.de\npassword_digest: \"$2a$12$h.moofWelYRbF2vc7YPVf.jBgAzbEOKhyTVAGdV59OzS8W5E46xiK\"\ncreated_at: !ruby/object:ActiveSupport::TimeWithZone\n  utc: 2021-07-01 23:20:28.243904000 Z\n  zone: &1 !ruby/object:ActiveSupport::TimeZone\n    name: Etc/UTC\n  time: 2021-07-01 23:20:28.243904000 Z\nupdated_at: !ruby/object:ActiveSupport::TimeWithZone\n  utc: 2021-07-01 23:20:28.243904000 Z\n  zone: *1\n  time: 2021-07-01 23:20:28.243904000 Z\ndeleted_at:\n', '2021-07-02 00:03:54')[0m
+  ↳ app/models/user.rb:17:in `archive!'
+  [1m[36mTRANSACTION (9.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:17:in `archive!'
+  Rendering layout layouts/mailer.html.erb
+  Rendering user_mailer/notify_user_archived.html.erb within layouts/mailer
+  Rendered user_mailer/notify_user_archived.html.erb within layouts/mailer (Duration: 0.1ms | Allocations: 5)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.3ms | Allocations: 94)
+UserMailer#notify_user_archived: processed outbound mail in 16.5ms
+Delivered mail 60de57ea6710f_13fb27092f2a41521@47e846264972.mail (2.2ms)
+Date: Fri, 02 Jul 2021 00:03:54 +0000
+From: from@example.com
+To: customer@easypep.de
+Message-ID: <60de57ea6710f_13fb27092f2a41521@47e846264972.mail>
+Subject: You have been archived
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Hello customer@easypep.de, You have been archived from the website!</h1>
+
+  </body>
+</html>
+
+Completed 200 OK in 60ms (Views: 0.3ms | ActiveRecord: 12.9ms | Allocations: 15174)
+
+
+Started POST "/users/archive/2" for 172.19.0.1 at 2021-07-02 00:04:01 +0000
+Processing by UsersController#archive as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:57:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+Filter chain halted as :validate_already_archived rendered or redirected
+Completed 400 Bad Request in 8ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 2801)
+
+
+Started POST "/users/unarchive/1" for 172.19.0.1 at 2021-07-02 00:05:40 +0000
+Processing by UsersController#unarchive as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:57:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+Filter chain halted as :validate_user rendered or redirected
+Completed 404 Not Found in 7ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 2716)
+
+
+Started POST "/users/unarchive/2" for 172.19.0.1 at 2021-07-02 00:06:11 +0000
+Processing by UsersController#unarchive as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:57:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:21:in `unarchive!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'customer@easypep.de' AND `users`.`deleted_at` IS NULL AND `users`.`id` != 2 LIMIT 1[0m
+  ↳ app/models/user.rb:21:in `unarchive!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2021-07-02 00:06:11.077736', `users`.`is_archived` = FALSE WHERE `users`.`id` = 2[0m
+  ↳ app/models/user.rb:21:in `unarchive!'
+  [1m[36mPaperTrail::Version Create (0.3ms)[0m  [1m[32mINSERT INTO `versions` (`item_type`, `item_id`, `event`, `whodunnit`, `object`, `created_at`) VALUES ('User', 2, 'update', '1', '---\nis_archived: true\nid: 2\nemail: customer@easypep.de\npassword_digest: \"$2a$12$h.moofWelYRbF2vc7YPVf.jBgAzbEOKhyTVAGdV59OzS8W5E46xiK\"\ncreated_at: !ruby/object:ActiveSupport::TimeWithZone\n  utc: 2021-07-01 23:20:28.243904000 Z\n  zone: &1 !ruby/object:ActiveSupport::TimeZone\n    name: Etc/UTC\n  time: 2021-07-01 23:20:28.243904000 Z\nupdated_at: !ruby/object:ActiveSupport::TimeWithZone\n  utc: 2021-07-02 00:03:54.388040000 Z\n  zone: *1\n  time: 2021-07-02 00:03:54.388040000 Z\ndeleted_at:\n', '2021-07-02 00:06:11')[0m
+  ↳ app/models/user.rb:21:in `unarchive!'
+  [1m[36mTRANSACTION (9.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:21:in `unarchive!'
+  Rendering layout layouts/mailer.html.erb
+  Rendering user_mailer/notify_user_unarchived.html.erb within layouts/mailer
+  Rendered user_mailer/notify_user_unarchived.html.erb within layouts/mailer (Duration: 0.4ms | Allocations: 101)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.6ms | Allocations: 188)
+UserMailer#notify_user_unarchived: processed outbound mail in 2.0ms
+Delivered mail 60de5873174de_13fb27092f16415386@47e846264972.mail (1.2ms)
+Date: Fri, 02 Jul 2021 00:06:11 +0000
+From: from@example.com
+To: customer@easypep.de
+Message-ID: <60de5873174de_13fb27092f16415386@47e846264972.mail>
+Subject: You have been unarchived
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Hello customer@easypep.de, You have been unarchived from the website!</h1>
+
+  </body>
+</html>
+
+Completed 200 OK in 27ms (Views: 0.2ms | ActiveRecord: 11.4ms | Allocations: 8495)
+
+
+Started POST "/users/unarchive/2" for 172.19.0.1 at 2021-07-02 00:06:15 +0000
+Processing by UsersController#unarchive as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:57:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+Filter chain halted as :validate_already_unarchived rendered or redirected
+Completed 400 Bad Request in 6ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 2803)
+
+
+Started POST "/users/unarchive/1" for 172.19.0.1 at 2021-07-02 00:06:21 +0000
+Processing by UsersController#unarchive as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:57:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`deleted_at` IS NULL AND `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+Filter chain halted as :validate_user rendered or redirected
+Completed 404 Not Found in 6ms (Views: 0.1ms | ActiveRecord: 0.5ms | Allocations: 2716)
+
+
