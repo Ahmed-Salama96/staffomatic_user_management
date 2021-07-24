@@ -13,18 +13,15 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    # Remove the user
-    render json: { error: @target_user.errors.full_messages.join(', ') }, status: :bad_request unless @target_user.destroy
+    render jsonapi_errors: @target_user.errors, status: :unprocessable_entity unless @target_user.destroy
 
-    # Send him email about this changes
     UserMailer.notify_user_deleted(@target_user).deliver_now
 
     render json: { message: 'user deleted successfully' }, status: :ok
   end
 
   def archive
-    # Archive the user
-    render json: { error: @target_user.errors.full_messages.join(', ') }, status: :bad_request unless @target_user.archive!
+    render jsonapi_errors: @target_user.errors, status: :unprocessable_entity unless @target_user.archive!
 
     # Send him email about this changes
     UserMailer.notify_user_archived(@target_user).deliver_now
@@ -33,10 +30,8 @@ class UsersController < ApplicationController
   end
 
   def unarchive
-    # Usnarchive the user
-    render json: { error: @target_user.errors.full_messages.join(', ') }, status: :bad_request unless @target_user.unarchive!
+    render jsonapi_errors: @target_user.errors, status: :unprocessable_entity unless @target_user.unarchive!
 
-    # Send him email about this changes
     UserMailer.notify_user_unarchived(@target_user).deliver_now
 
     render json: { message: 'user unarchived successfully' }, status: :ok
@@ -62,16 +57,16 @@ class UsersController < ApplicationController
   end
 
   def validate_user
-    return render json: { error: 'record not found' }, status: :not_found unless @target_user.present?
-    render json: { error: 'you cannot delete, archive, or un-archive yourself' },
-           status: :bad_request if @target_user.id == current_user.id
+    return render jsonapi_errors: 'record not found', status: :not_found unless @target_user.present?
+    render jsonapi_errors: 'you cannot delete, archive, or un-archive yourself' ,
+           status: :unprocessable_entity if @target_user.id == current_user.id
   end
 
   def validate_already_archived
-    render json: { error: 'user already archived' }, status: :bad_request if @target_user.is_archived?
+    render jsonapi_errors: 'user already archived', status: :unprocessable_entity if @target_user.is_archived?
   end
 
   def validate_already_unarchived
-    render json: { error: 'user already unarchived' }, status: :bad_request unless @target_user.is_archived?
+    render jsonapi_errors: 'user already unarchived', status: :unprocessable_entity unless @target_user.is_archived?
   end
 end
